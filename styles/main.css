@@ -1,0 +1,108 @@
+*{
+  box-sizing: border-box;
+}
+
+
+/* styling for the grid wrapper class */
+body { 
+  height: 100vh;
+  margin: 0;
+  background-color: black;
+}
+
+h1 {
+  color: red;
+  text-align: center;
+  font-size: 50px;
+  font-family: 
+}
+
+.Start-Game {
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white; 
+}
+
+.Start-Game #start {
+  height: 50px;
+  width: 150px;
+}
+
+.Start-Game p { 
+  font-size: 30px;
+
+}
+
+.Start-Game #score-display { 
+  font-size: 50px;
+}
+
+
+.grid-wrapper {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.grid {
+  align-items: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  height: 80%;
+  justify-content: center;
+  height: 600px;
+  width: 1500px;
+}
+
+.grid div {
+  /* border: 1px solid lightgrey; */
+  /* flex-grow: 1; */
+  height: 5%;
+  width: 7%;
+}
+
+.purple { 
+  background-color: rgb(129, 16, 129);
+  border: 1px solid lightgrey;
+}
+
+.green { 
+  background-color: green;
+  border: 1px solid lightgrey;
+}
+
+
+.yellow {
+  background-color: yellow;
+  border: 1px solid lightgrey;
+}
+
+.hidden {
+  border: 1px solid black;
+}
+
+
+.paddle {
+  background-color: rgb(44, 131, 231);
+}
+/* .purple-brick {
+  color: purple;
+} */
+
+/* styling for each brick class */
+
+
+/* styling for paddle */
+
+
+/* styling for bar */
+
+img {
+  position: absolute;
+  height: 40px;
+  width: 40px; 
+}

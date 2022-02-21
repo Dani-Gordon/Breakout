@@ -14,11 +14,10 @@ h1 {
   color: red;
   text-align: center;
   font-size: 50px;
-  font-family: 
 }
 
 .Start-Game {
-  height: 10vh;
+  height: 15vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -26,7 +25,7 @@ h1 {
 }
 
 .Start-Game #start {
-  height: 50px;
+  height: 40px;
   width: 150px;
 }
 
@@ -49,13 +48,14 @@ h1 {
 
 .grid {
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.493);
   display: flex;
   flex-wrap: wrap;
   height: 80%;
   justify-content: center;
   height: 600px;
   width: 1500px;
+  border: 1px solid grey;
 }
 
 .grid div {
@@ -64,6 +64,8 @@ h1 {
   height: 5%;
   width: 7%;
 }
+
+/* styling for each brick class */
 
 .purple { 
   background-color: rgb(129, 16, 129);
@@ -85,21 +87,20 @@ h1 {
   border: 1px solid black;
 }
 
-
+/* styling for the paddle bar */
 .paddle {
   background-color: rgb(44, 131, 231);
 }
-/* .purple-brick {
-  color: purple;
+
+/* styling for ball */
+
+/* .ball {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+  background-color: tomato;
 } */
-
-/* styling for each brick class */
-
-
-/* styling for paddle */
-
-
-/* styling for bar */
 
 img {
   position: absolute;

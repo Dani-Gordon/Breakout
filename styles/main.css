@@ -40,6 +40,7 @@ h1 {
 
 
 .grid-wrapper {
+  /* position: relative; */
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -47,6 +48,7 @@ h1 {
 }
 
 .grid {
+  /* position: relative; */
   align-items: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.493);
   display: flex;
@@ -85,25 +87,31 @@ h1 {
 
 .hidden {
   border: 1px solid black;
-}
-
-/* styling for the paddle bar */
-.paddle {
-  background-color: rgb(44, 131, 231);
+  color: white;
 }
 
 /* styling for ball */
 
-/* .ball {
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  border-radius: 10px;
-  background-color: tomato;
-} */
+.grid div.ball {
+  background-image: url('../images/Disco-Ball.svg');
+  background-repeat: no-repeat; 
+  background-size: contain;
+  /* z-index: 1; */
+}
 
-img {
+.Disco-Ball {
   position: absolute;
-  height: 40px;
-  width: 40px; 
+  height: 30px;
+  width: 30px;
+  top: 525px; 
+  left: 580px; 
+}
+
+.invisible { 
+  display: none; 
+} 
+
+/* styling for the paddle bar */
+.paddle {
+  background-color: rgb(44, 131, 231);
 }

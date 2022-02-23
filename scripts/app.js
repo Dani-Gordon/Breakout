@@ -19,6 +19,10 @@ const start = document.getElementById('start');
 // * score display
 // const scoreDisplay = document.querySelector('#score-display');
 // * score tally
+// const yellow = 1
+// const green = 3
+// const purple = 5
+
 let score = 0;
 // * x =
 // const xPosition = currentIndex % width;
@@ -35,7 +39,7 @@ const cells = [];
 const paddle = document.querySelectorAll('.paddle');
 let paddlePosition = 145
 
-let ballPosition = 133
+let discoPosition = 133
 
 
 
@@ -51,8 +55,6 @@ function createGrid() {
       gameGrid.className = 'yellow';
     } else if (i >= 145 && i < 149) { 
       gameGrid.className = 'paddle';
-    // } else if (i === 133) {
-    //   gameGrid.classList = 'ball';
     } else {
       gameGrid.className = 'hidden';
     }
@@ -64,7 +66,7 @@ function createGrid() {
 }
 //!133 is taken up by the ball image and moved....need to fix asap
 function addBall() {
-  cells[ballPosition].classList.add('ball');
+  cells[discoPosition].classList.add('ball');
 }
 
 createGrid()
@@ -112,80 +114,142 @@ function handleKeys(event) {
 
 document.addEventListener('keyup', handleKeys)
 
-// 7. create div and attach img of ball to cell position
+
+//!<<<<<<<<<<<functions to move the ball>>>>>>>>>>>>>//
+let onLeftPaddle = [145, 146]
+let onRightPaddle = [147, 148]
+let onPaddle = true
+let onYellowBrick = true
+let onGreenBrick = true
+let onPurpleBrick = true
+let direction = 'rightup' 
 
 
-// const ball = document.querySelector('.ball');
-// const currentIndex = 'ball';
-// let ballPosition = currentIndex % width
-// ball.classList.add('ball')
-// ball.style.left = ballPosition[0] + 'px'
-// ball.style.bottom = ballPosition[1] + 'px'
-// grid.appendChild(ball)
 
-// console.log(ball)
-
-// let discoBall = document.querySelector('.Disco-Ball');
-// const discoDimensions = discoBall.getBoundingClientRect()
-// console.log(discoDimensions)
 
 function addDisco() {
   cells[discoPosition].classList.remove('hidden');
   cells[discoPosition].classList.add('ball');
   console.log('added disco ball');
 }
+
 function removeDisco() {
   cells[discoPosition].classList.add('hidden');
   cells[discoPosition].classList.remove('ball');
   console.log('removed disco ball');
 }
 
-//!change to reflect ball image not invisible discoball -move by i # through set interval function not x/y axis pts
-//move ball 
-// let xPosition = 580
-// let yPosition = 615.5
-let discoPosition = (133)
+//!make brick disappear when ball moves into location of brick
+
+// When ball hits Yellow Brick --> remove yellow class, add hidden, return ball to paddle 
+function yellowCollision() {
+  cells[discoPosition].classList.remove('yellow');
+  cells[discoPosition].classList.add('hidden');
+  console.log('it works')
+  // cells[discoPosition].includes.classList('yellow');
+}
+
+// When ball hits Green Brick --> remove green class, add hidden, return ball to paddle
+function greenCollision() {
+  cells[discoPosition].classList.remove('green'); 
+  cells[discoPosition].classList.add('hidden');
+}
+// When ball hits Purple Brick --> remove purple class, add hidden, return ball to paddle
+function purpleCollision() {
+  cells[discoPosition].classList.remove('purple');
+  cells[discoPosition].classList.add('hidden');
+}
+
+function hitBrickMoveDown() {
+  cells[discoPosition].includesClassList('green')
+  discoPosition += 13
+}
+
+function walls() {
+  const leftEdge = discoPosition[0] % width === 0
+  const rightEdge = discoPosition[discoPosition.length - 1] % width === width - 1
+  const topEdge = discoPosition >= 13
+
+}
+
+// function discoDirection() {
+//   if (direction === 'leftup') {
+//     discoPosition -= 13
+//   } else if (direction === 'leftdown') {
+//     discoPosition += 13
+//   } else if (direction === 'rightup') {
+//     discoPosition -= 15
+//   } else if (direction === 'rightdown') {
+//     discoPosition += 15
+//   }
+// }
+// console.log(direction)
+
 
 function moveDiscoBall() {
   const ballMovement = setInterval(() => {
-    if (true) {
+    if (onPaddle) {
       removeDisco()
-      discoPosition -= 14
+      discoPosition -= 13
+      yellowCollision()
+      if (yellowCollision) {
+        removeDisco()
+        direction = 'leftdown'
+      }
+      // greenCollision()
+      // purpleCollision()
+      // hitBrickMoveDown()
+      if (onYellowBrick) {
+        if (direction === 'leftup') {
+          direction = 'leftdown';
+        } else if (direction === 'rightup') {
+          direction = 'rightdown';
+        }
+        if (onLeftPaddle) {
+          direction === 'leftup';
+        } else {
+          direction === 'rightup';
+        }
+      }
+      // greenCollision()
+      // yellowCollision()
+      // hitBrickMoveDown(direction)
+      // discoPosition += 13
+      removeDisco()
+      // if (direction === 'leftup') {
+      //   discoPosition -= 13
+      // } else if (direction === 'leftdown') {
+      //   discoPosition += 13
+      // } else if (direction === 'rightup') {
+      //   discoPosition -= 15
+      // } else if (direction === 'rightdown') {
+      //   discoPosition += 15
+      // }
       addDisco()
-    } else {
+    } else { 
       clearInterval(ballMovement)
-    }
-  }, 1000);
+    } 
+  }, 1000)
 }
+
 //<<<<<<<<Event Listner for mouseClick on StartGame button>>>>>//
-start.addEventListener('click', moveDiscoBall)
-
-//!make event listner for spacebar later
-
-
+// start.addEventListener('click', moveDiscoBall)
+//event listner for spacebar
+document.addEventListener('keydown', moveDiscoBall) 
 
 
 
+// make brick disappear when ball moves into location of brick
 
-// 8. tell ball how to move dependent upon which cell it hits on the bar
+// make ball move to bottom after ball moves into location of brick
 
 
+//if bar misses ball, turn over, ball returns to start position
 
 
-// 9. assign pts to cell position of bricks
+//assign pts to cell position of bricks
 
 
 // 10. score pts when ball hits brick cell position
 //     - pts determined by location of brick
 //     -pts tallied on scoreboard
-
-
-// 11. make brick disappear when ball moves into location of brick
-
-
-
-// 12. make ball move to bottom after ball moves into location of brick
-
-
-
-// 13. if bar misses ball, turn over, ball returns to start position

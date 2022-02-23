@@ -1,34 +1,18 @@
 //<<<<<Create the variables needed and attach to HTML classes >>>//
 
-//*Variables needed*//:
+//*Variables*//
 
-// * width
+//* Grid *//
 const width = 14;
-// const gridWidth = 1500;
-// const brickWidth = 105;
-// const paddleWidth = 420;
-//*height
-const height = 11;
-// * cell count
+const height = 12;
 const gridCellCount = width * height;
 // * start game button
 const start = document.getElementById('start');
 // *audio
 
 // * score display
-// const scoreDisplay = document.querySelector('#score-display');
-// * score tally
-// const yellow = 1
-// const green = 3
-// const purple = 5
-
+const scoreDisplay = document.querySelector('#score-display');
 let score = 0;
-// * x =
-// const xPosition = currentIndex % width;
-// * y =
-// const yPosition = Math.floor(currentIndex / width);
-//*ball position
-// let ballPosition = 133
 
 const grid = document.querySelector('.grid');
 // const ball = document.querySelector('.ball');
@@ -52,19 +36,17 @@ function createGrid() {
     } else if (i >= 145 && i < 149) {
       gameGrid.className = 'paddle';
     }
-    // else {
-    //   gameGrid.className = 'hidden';
-    // }
     gameGrid.setAttribute('data-id', i);
     grid.appendChild(gameGrid);
     cells.push(gameGrid);
-    gameGrid.textContent = i;
+    // gameGrid.textContent = i;
   }
 }
 //!133 is taken up by the ball image and moved....need to fix asap
 function addDisco() {
   cells[discoPosition].classList.add('ball');
 }
+
 
 createGrid();
 addDisco();
@@ -108,10 +90,6 @@ document.addEventListener('keyup', handleKeys);
 //!<<<<<<<<<<<functions to move the ball>>>>>>>>>>>>>//
 let onLeftPaddle = [145, 146];
 let onRightPaddle = [147, 148];
-let onPaddle = true;
-// let onYellowBrick = true;
-// let onGreenBrick = true;
-// let onPurpleBrick = true;
 let direction = 'leftup';
 
 function removeDisco() {
@@ -166,8 +144,6 @@ const isCollisionWithWall = () => {
   const topWall = discoPosition <= 13;
   return [leftWall, rightWall, topWall].some((val) => val);
 };
-
-
 
 
 function handleCollisionWithWall() {
@@ -237,21 +213,29 @@ const updateDiscoPosition = () => {
   }
 };
 
+
+
 function moveDiscoBall() {
   ballMovement = setInterval(() => {
     if (yellowCollision()) {
       changeDiscoDirection();
       handleYellowCollision();
+      score = score + 1
+      scoreDisplay.innerHTML = score
     }
 
     if (greenCollision()) {
       changeDiscoDirection();
       handleGreenCollision();
+      score = score + 3
+      scoreDisplay.innerHTML = score
     }
 
     if (purpleCollision()) {
       changeDiscoDirection();
       handlePurpleCollision();
+      score = score + 5
+      scoreDisplay.innerHTML = score
     }
 
     if (paddleCollision()) {
@@ -269,7 +253,9 @@ function moveDiscoBall() {
     addDisco();
 
     if (discoPosition > 153) {
+      scoreDisplay.innerHTML = 'Game Over!'
       clearInterval(ballMovement);
+      
     }
   }, 1000);
 }
@@ -282,7 +268,7 @@ function stopGame() {
 //<<<<<<<<Event Listner for mouseClick on StartGame button>>>>>//
 start.addEventListener('click', moveDiscoBall);
 //event listner for spacebar
-
+// cells.forEach((cell) => cell.addEventListener(hasDisco, hitYellow));
 // make brick disappear when ball moves into location of brick
 
 // make ball move to bottom after ball moves into location of brick

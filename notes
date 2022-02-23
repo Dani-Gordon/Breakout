@@ -14,3 +14,17 @@
 // let discoBall = document.querySelector('.Disco-Ball');
 // const discoDimensions = discoBall.getBoundingClientRect()
 // console.log(discoDimensions)
+
+
+// function hasDisco(element) {
+//   return element.classList.contains('yellow');
+// }
+
+// function hitYellow(event) {
+//   if (hasDisco(event.target)) {
+//     console.log('hit yellow brick!');
+//     score = score + 1;
+//     scoreDisplay.innerText = score;
+//     handleYellowCollision(event.target.dataset.id);
+//   }
+// }

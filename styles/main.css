@@ -58,6 +58,7 @@ h1 {
   height: 600px;
   width: 1500px;
   border: 1px solid grey;
+  color: white;
 }
 
 .grid div {
@@ -85,10 +86,12 @@ h1 {
   border: 1px solid lightgrey;
 }
 
-.hidden {
-  border: 1px solid black;
-  color: white;
+.purple,
+.green, 
+.yellow { 
+  color: black;
 }
+
 
 /* styling for ball */
 
@@ -114,4 +117,5 @@ h1 {
 /* styling for the paddle bar */
 .paddle {
   background-color: rgb(44, 131, 231);
+  color: black;
 }

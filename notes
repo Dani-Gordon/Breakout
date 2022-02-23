@@ -1,0 +1,16 @@
+// 7. create div and attach img of ball to cell position
+
+
+// const ball = document.querySelector('.ball');
+// const currentIndex = 'ball';
+// let ballPosition = currentIndex % width
+// ball.classList.add('ball')
+// ball.style.left = ballPosition[0] + 'px'
+// ball.style.bottom = ballPosition[1] + 'px'
+// grid.appendChild(ball)
+
+// console.log(ball)
+
+// let discoBall = document.querySelector('.Disco-Ball');
+// const discoDimensions = discoBall.getBoundingClientRect()
+// console.log(discoDimensions)

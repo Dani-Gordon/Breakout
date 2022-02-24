@@ -8,7 +8,10 @@ const height = 12;
 const gridCellCount = width * height;
 // * start game button
 const start = document.getElementById('start');
+const restart = document.getElementById('restart')
 // *audio
+const btns = document.querySelectorAll('button')
+const audio = document.querySelector('audio')
 
 // * score display
 const scoreDisplay = document.querySelector('#score-display');
@@ -85,11 +88,9 @@ function handleKeys(event) {
   }
 }
 
-document.addEventListener('keyup', handleKeys);
+document.addEventListener('keydown', handleKeys);
 
 //!<<<<<<<<<<<functions to move the ball>>>>>>>>>>>>>//
-let onLeftPaddle = [145, 146];
-let onRightPaddle = [147, 148];
 let direction = 'leftup';
 
 function removeDisco() {
@@ -108,6 +109,8 @@ function yellowCollision() {
 
 function handleYellowCollision() {
   cells[discoPosition].classList.remove('yellow');
+  audio.src = './sounds/mixkit-game-balloon-or-bubble-pop-3069.wav'
+  audio.play();
 }
 
 // When ball hits Green Brick --> remove green class, add hidden, return ball to paddle
@@ -119,6 +122,8 @@ function greenCollision() {
 
 function handleGreenCollision() {
   cells[discoPosition].classList.remove('green');
+  audio.src = './sounds/mixkit-electronic-retro-block-hit-2185.wav'
+  audio.play();
 }
 // When ball hits Purple Brick --> remove purple class, add hidden, return ball to paddle
 function purpleCollision() {
@@ -129,6 +134,8 @@ function purpleCollision() {
 
 function handlePurpleCollision() {
   cells[discoPosition].classList.remove('purple');
+  audio.src = './sounds/mixkit-body-punch-quick-hit-2153.wav'
+  audio.play();
 }
 
 function paddleCollision() {
@@ -190,15 +197,16 @@ function changeDiscoDirection() {
   if (direction === 'leftup') {
     direction = 'leftdown';
   }
+  console.log(direction)
 }
 
 function changeDiscoDirectionTwo() {
-  if (direction === 'rightdown') {
-    direction = 'leftup';
-  }
   if (direction === 'leftdown') {
+    direction = 'leftup';
+  } else if (direction === 'rightdown') {
     direction = 'rightup';
   }
+  console.log(direction)
 }
 
 const updateDiscoPosition = () => {
@@ -239,7 +247,9 @@ function moveDiscoBall() {
     }
 
     if (paddleCollision()) {
+      // removeDisco()
       changeDiscoDirectionTwo();
+      // addDisco()
     }
 
     removeDisco();
@@ -252,12 +262,22 @@ function moveDiscoBall() {
 
     addDisco();
 
+    if (score >= 238) {
+      scoreDisplay.innerHTML = 'You Win!'
+      clearInterval(ballMovement);
+    }
+
     if (discoPosition > 153) {
       scoreDisplay.innerHTML = 'Game Over!'
+      // audio.src = './sounds/mixkit-retro-game-over-1947.wav'
+      // audio.play();
       clearInterval(ballMovement);
       
     }
-  }, 1000);
+  }, 200);
+}
+function restartGame() {
+  window.location.reload()
 }
 
 function stopGame() {
@@ -267,6 +287,16 @@ function stopGame() {
 
 //<<<<<<<<Event Listner for mouseClick on StartGame button>>>>>//
 start.addEventListener('click', moveDiscoBall);
+restart.addEventListener('click', restartGame);
+
+
+//when each button is clicked, execute a function
+// btns.forEach((btn) => btn.addEventListener('click', playSound));
+
+// function playSound() {
+//   audio.src = './sounds/mixkit-retro-game-notification-212.wav'
+//   audio.play();
+// }
 //event listner for spacebar
 // cells.forEach((cell) => cell.addEventListener(hasDisco, hitYellow));
 // make brick disappear when ball moves into location of brick

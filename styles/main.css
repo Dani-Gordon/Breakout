@@ -14,6 +14,7 @@ h1 {
   color: red;
   text-align: center;
   font-size: 50px;
+  font-family: 'Monoton', cursive;
 }
 
 .Start-Game {
@@ -22,20 +23,36 @@ h1 {
   justify-content: space-around;
   align-items: center;
   color: white; 
+  font-family: 'Press Start 2P', cursive;
 }
 
 .Start-Game #start {
   height: 40px;
   width: 150px;
+  font-size: 11px;
+  font-family: 'Press Start 2P', cursive;
+  border: none;
+  outline: none;
+}
+
+.Start-Game #restart {
+  height: 40px;
+  width: 150px;
+  font-size: 10px;
+  font-family: 'Press Start 2P', cursive;
+  border: none;
+  outline: none;
 }
 
 .Start-Game p { 
-  font-size: 30px;
+  font-size: 18px;
+  /* font-family: 'Press Start 2P', cursive; */
 
 }
 
 .Start-Game #score-display { 
-  font-size: 50px;
+  font-size: 30px;
+  font-family: 'Press Start 2P', cursive;
 }
 
 
@@ -71,7 +88,7 @@ h1 {
 /* styling for each brick class */
 
 .purple { 
-  background-color: rgb(129, 16, 129);
+  background-color: rgba(196, 23, 196, 0.9);
   border: 1px solid lightgrey;
 }
 
@@ -90,6 +107,7 @@ h1 {
 .green, 
 .yellow { 
   color: black;
+  /* background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png"); */
 }
 
 
@@ -113,6 +131,11 @@ h1 {
 .invisible { 
   display: none; 
 } 
+
+#invisiStart {
+  display: none;
+}
+
 
 /* styling for the paddle bar */
 .paddle {

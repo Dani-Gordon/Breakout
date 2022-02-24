@@ -5,19 +5,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/main.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Press+Start+2P&display=swap');
+</style>
   <title>Document</title>
 </head>
 <body>
+  <audio></audio>
   <h1>Breakout</h1>
 <!-- button for start of game, score display -->
     <div class="Start-Game">
         <button id="start">Start Game!</button>
+        <button id="restart">Restart Game!</button>
         <p>Current Score: <span id="score-display">0</span>
         </p>
     </div>
     <div class="grid-wrapper">
       <div class="grid"></div>
         <img class="invisible Disco-Ball" src="./images/Disco-Ball.svg" alt="Disco-Ball">
+    </div>
+    <div class="start-screen">
+      <button type="button" id="invisiStart">Start</button>
     </div>
   
 

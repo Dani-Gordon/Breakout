@@ -17,5 +17,28 @@ Purple Bricks = 5 pts
 
  ## Requirements
 
-* The game should be playable for one player.
-* 
+* The game is playable for one player.
+
+Day 1 -Thursday
+
+
+
+Day 2 -Friday
+
+
+Day 3 - Saturday
+
+
+Day 4 - Sunday
+
+
+
+Day 5 -Monday
+
+Day 6 - Tuesday
+
+Day 7 - Wednesday 
+
+Day 8 - Thursday 
+
+Day 9 - Friday (presentation day)

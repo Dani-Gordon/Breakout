@@ -2,41 +2,39 @@
 
 //*Variables*//
 
-//* Grid *//
-const width = 14;
-const height = 12;
+// * Grid * //
+const width = 13;
+const height = 13;
 const gridCellCount = width * height;
-// * start game button
+const grid = document.querySelector('.grid');
+const cells = [];
+// * start/restart game buttons * //
 const start = document.getElementById('start');
 const restart = document.getElementById('restart')
-// *audio
+// * audio * //
 const btns = document.querySelectorAll('button')
 const audio = document.querySelector('audio')
 
-// * score display
+// * score display * //
 const scoreDisplay = document.querySelector('#score-display');
 let score = 0;
 
-const grid = document.querySelector('.grid');
-// const ball = document.querySelector('.ball');
-const cells = [];
-const paddle = document.querySelectorAll('.paddle');
-let paddlePosition = 145;
-
-let discoPosition = 133;
+// * Disco/Paddle starting positions * //
+let paddlePosition = 135;
+let discoPosition = 123;
 let ballMovement;
 
 //create the grid w/divs & grid classes
 function createGrid() {
   for (let i = 0; i < gridCellCount; i++) {
     const gameGrid = document.createElement('div');
-    if (i <= 27) {
+    if (i <= 25) {
       gameGrid.className = 'purple'; //grid classes = .purple, .green, .yellow, .hidden, .paddle
-    } else if (i >= 28 && i < 56) {
+    } else if (i >= 26 && i < 52) {
       gameGrid.className = 'green';
-    } else if (i >= 56 && i < 70) {
+    } else if (i >= 52 && i < 65) {
       gameGrid.className = 'yellow';
-    } else if (i >= 145 && i < 149) {
+    } else if (i >= 135 && i < 138) {
       gameGrid.className = 'paddle';
     }
     gameGrid.setAttribute('data-id', i);
@@ -45,11 +43,10 @@ function createGrid() {
     // gameGrid.textContent = i;
   }
 }
-//!133 is taken up by the ball image and moved....need to fix asap
+
 function addDisco() {
   cells[discoPosition].classList.add('ball');
 }
-
 
 createGrid();
 addDisco();
@@ -62,20 +59,21 @@ function removePaddle(position) {
   cells[position].classList.remove('paddle');
 }
 
+//*Functions for paddle movement and quit game*//
 function handleKeys(event) {
   switch (
     event.keyCode // 4. assign key directions
   ) {
     case 39: //right arrow    // 5. move the bar with key func
-      if (paddlePosition <= 150 - 1) {
+      if (paddlePosition <= 142 - 3) {
         removePaddle(paddlePosition);
         paddlePosition++;
-        addPaddle(paddlePosition + 3);
+        addPaddle(paddlePosition + 2);
       }
       break;
     case 37: //left arrow
-      if (paddlePosition >= 140 + 1) {
-        removePaddle(paddlePosition + 3);
+      if (paddlePosition >= 130 + 1) {
+        removePaddle(paddlePosition + 2);
         paddlePosition--;
         addPaddle(paddlePosition);
       }
@@ -91,14 +89,13 @@ function handleKeys(event) {
 document.addEventListener('keydown', handleKeys);
 
 //!<<<<<<<<<<<functions to move the ball>>>>>>>>>>>>>//
+
 let direction = 'leftup';
 
 function removeDisco() {
-  // cells[discoPosition].classList.add('hidden');
   cells[discoPosition].classList.remove('ball');
 }
-
-//!make brick disappear when ball moves into location of brick
+//make brick disappear when ball moves into location of brick
 
 // When ball hits Yellow Brick --> remove yellow class, add hidden, return ball to paddle
 function yellowCollision() {
@@ -109,7 +106,7 @@ function yellowCollision() {
 
 function handleYellowCollision() {
   cells[discoPosition].classList.remove('yellow');
-  audio.src = './sounds/mixkit-game-balloon-or-bubble-pop-3069.wav'
+  audio.src = './sounds/mixkit-body-punch-quick-hit-2153.wav'
   audio.play();
 }
 
@@ -134,7 +131,7 @@ function purpleCollision() {
 
 function handlePurpleCollision() {
   cells[discoPosition].classList.remove('purple');
-  audio.src = './sounds/mixkit-body-punch-quick-hit-2153.wav'
+  audio.src = './sounds/mixkit-electronic-retro-block-hit-2185.wav'
   audio.play();
 }
 
@@ -148,7 +145,7 @@ function paddleCollision() {
 const isCollisionWithWall = () => {
   const leftWall = discoPosition % width === 0;
   const rightWall = discoPosition % width === width - 1;
-  const topWall = discoPosition <= 13;
+  const topWall = discoPosition <= width;
   return [leftWall, rightWall, topWall].some((val) => val);
 };
 
@@ -156,10 +153,12 @@ const isCollisionWithWall = () => {
 function handleCollisionWithWall() {
   const leftWall = discoPosition % width === 0;
   const rightWall = discoPosition % width === width - 1;
-  const topWall = discoPosition <= 13;
+  const topWall = discoPosition <= width;
   const paddle = cells[discoPosition].classList.contains('paddle')
   const goingUp = direction.slice(direction.length - 2) === 'up';
-  console.log({ direction, leftWall, rightWall, topWall, goingUp, paddle });
+  const isGoingLeft = direction.slice(4) === 'left';
+  const goingDown = direction.slice(direction.length - 4) === 'down';
+  // console.log({ direction, leftWall, rightWall, topWall, goingUp, paddle });
   if (leftWall) {
     if (goingUp) {
       direction = 'rightup';
@@ -173,21 +172,18 @@ function handleCollisionWithWall() {
       direction = 'leftdown';
     }
   } else if (topWall) {
-    const isGoingLeft = direction.slice(4) === 'left';
     if (isGoingLeft) {
-      direction = 'leftdown';
-    } else {
       direction = 'rightdown';
+    } else {
+      direction = 'leftdown';
     }
   } else if (paddle) {
-    const goingDown = direction.slice(direction.length - 4) === 'down';
     if (goingDown) {
       direction = 'rightup';
     } else { 
       direction = 'leftup';
     }
   }
-  console.log('hit wall', direction, paddle,)
 }
 
 function changeDiscoDirection() {
@@ -197,27 +193,25 @@ function changeDiscoDirection() {
   if (direction === 'leftup') {
     direction = 'leftdown';
   }
-  console.log(direction)
 }
-
-function changeDiscoDirectionTwo() {
+//direction ball goes when it hits the paddle//
+function changeDiscoPaddleDirection() {
   if (direction === 'leftdown') {
     direction = 'leftup';
   } else if (direction === 'rightdown') {
     direction = 'rightup';
   }
-  console.log(direction)
 }
 
 const updateDiscoPosition = () => {
   if (direction === 'leftup') {
-    discoPosition = discoPosition - 15;
-  } else if (direction === 'leftdown') {
-    discoPosition = discoPosition + 13;
-  } else if (direction === 'rightup') {
     discoPosition = discoPosition - 13;
+  } else if (direction === 'leftdown') {
+    discoPosition = discoPosition + 12;
+  } else if (direction === 'rightup') {
+    discoPosition = discoPosition - 12;
   } else if (direction === 'rightdown') {
-    discoPosition = discoPosition + 15;
+    discoPosition = discoPosition + 14;
   }
 };
 
@@ -247,9 +241,7 @@ function moveDiscoBall() {
     }
 
     if (paddleCollision()) {
-      // removeDisco()
-      changeDiscoDirectionTwo();
-      // addDisco()
+      changeDiscoPaddleDirection();
     }
 
     removeDisco();
@@ -267,14 +259,15 @@ function moveDiscoBall() {
       clearInterval(ballMovement);
     }
 
-    if (discoPosition > 153) {
+    if (discoPosition > 142) {
       scoreDisplay.innerHTML = 'Game Over!'
-      // audio.src = './sounds/mixkit-retro-game-over-1947.wav'
-      // audio.play();
+      audio.src = './sounds/mixkit-retro-game-over-1947.wav'
+      audio.play();
+      removeDisco();
       clearInterval(ballMovement);
       
     }
-  }, 200);
+  }, 250);
 }
 function restartGame() {
   window.location.reload()
@@ -291,22 +284,9 @@ restart.addEventListener('click', restartGame);
 
 
 //when each button is clicked, execute a function
-// btns.forEach((btn) => btn.addEventListener('click', playSound));
+btns.forEach((btn) => btn.addEventListener('click', playSound));
 
-// function playSound() {
-//   audio.src = './sounds/mixkit-retro-game-notification-212.wav'
-//   audio.play();
-// }
-//event listner for spacebar
-// cells.forEach((cell) => cell.addEventListener(hasDisco, hitYellow));
-// make brick disappear when ball moves into location of brick
-
-// make ball move to bottom after ball moves into location of brick
-
-//if bar misses ball, turn over, ball returns to start position
-
-//assign pts to cell position of bricks
-
-// 10. score pts when ball hits brick cell position
-//     - pts determined by location of brick
-//     -pts tallied on scoreboard
+function playSound() {
+  audio.src = './sounds/mixkit-retro-game-notification-212.wav'
+  audio.play();
+}

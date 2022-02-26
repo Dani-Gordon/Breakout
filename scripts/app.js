@@ -21,7 +21,7 @@ let score = 0;
 
 // * Disco/Paddle starting positions * //
 let paddlePosition = 135;
-let discoPosition = 123;
+let discoPosition = 124;
 let ballMovement;
 
 //create the grid w/divs & grid classes

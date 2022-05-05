@@ -8,7 +8,7 @@ Project duration: 7 days
 
 - Please note: NO babies were harmed during the making of this game, only my brain and livelihood.
 
-[CLICK HERE TO PLAY! PSA: It's addictive!](https://dani-gordon.github.io/ga-project1-breakout/)
+[CLICK HERE TO PLAY! PSA: It's addictive!](https://dani-gordon.github.io/Breakout/)
 
 The guy behind the guy behind the guy: <br>
 Breakout is an arcade video game developed and published by Atari, Inc.and released on May 13, 1976.

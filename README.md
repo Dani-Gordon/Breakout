@@ -38,7 +38,7 @@ Hand drawn & Excalidraw wireframing for Breakout and Frogger:
 
 ***Day 4 (Sun)*** –  Using the functions written yesterday, I was able to get the paddle to move across the screen; however, it would move off the screen when moving to the right by 2 divs, and would wrap around to the row above by 2 divs when moving to the left. 
 
-***Day 5 (Mon)*** - Figured out the code needed to be able to move the paddle back and forth on the grid without it jumping to the line above when moving it to the left, as well how to have it stop on both edges of the screen without part of it disappearing into the abyss. This took a bit of time. Here is the code that allowed the functionality of the paddle to work as expected.  
+***Day 5 (Mon)*** - Figured out the code needed to be able to move the paddle back and forth on the grid without it jumping to the line above when moving it to the left, as well as how to have it stop on both edges of the screen without part of it disappearing into the abyss. This took a bit of time. Here is the code that allowed the functionality of the paddle to work as expected.  
 
  <img width="400" alt="image" src="https://user-images.githubusercontent.com/99892502/168495527-e1c3b0bc-0724-441e-a5ef-fe11116ccb48.png">
 

@@ -4,7 +4,7 @@
 The game has been deployed with GitHub Pages: [CLICK HERE TO PLAY! PSA: It's addictive!](https://dani-gordon.github.io/Breakout/)
 
 # Goal and Timeframe 
-To build a functioning browser game with pure JavaScript in 8 days.
+To build a functioning browser game with pure JavaScript in 8 days - solo project.
 
 
 # The Rules of Discoball Engagement
